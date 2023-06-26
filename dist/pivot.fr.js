@@ -47,25 +47,82 @@
         cancel: "Annuler"
       },
       aggregators: {
-        "Nombre": tpl.count(frFmtInt),
-        "Nombre de valeurs uniques": tpl.countUnique(frFmtInt),
-        "Liste de valeurs uniques": tpl.listUnique(", "),
-        "Somme": tpl.sum(frFmt),
-        "Somme en entiers": tpl.sum(frFmtInt),
-        "Moyenne": tpl.average(frFmt),
-        "Minimum": tpl.min(frFmt),
-        "Maximum": tpl.max(frFmt),
-        "Premier": tpl.first(frFmt),
-        "Dernier": tpl.last(frFmt),
-        "Ratio de sommes": tpl.sumOverSum(frFmt),
-        "Borne supérieure 80%": tpl.sumOverSumBound80(true, frFmt),
-        "Borne inférieure 80%": tpl.sumOverSumBound80(false, frFmt),
-        "Somme en proportion du totale": tpl.fractionOf(tpl.sum(), "total", frFmtPct),
-        "Somme en proportion de la ligne": tpl.fractionOf(tpl.sum(), "row", frFmtPct),
-        "Somme en proportion de la colonne": tpl.fractionOf(tpl.sum(), "col", frFmtPct),
-        "Nombre en proportion du totale": tpl.fractionOf(tpl.count(), "total", frFmtPct),
-        "Nombre en proportion de la ligne": tpl.fractionOf(tpl.count(), "row", frFmtPct),
-        "Nombre en proportion de la colonne": tpl.fractionOf(tpl.count(), "col", frFmtPct)
+        "Count" : {
+          "Value": "Nombre",
+          "Function": tpl.count(frFmtInt),
+        },
+        "Count Unique Values": {
+          "Value": "Nombre de valeurs uniques",
+          "Function": tpl.countUnique(frFmtInt),
+        },
+        "List Unique Values": {
+          "Value": "Liste de valeurs uniques",
+          "Function": tpl.listUnique(", "),
+        },
+        "Sum": {
+          "Value": "Somme",
+          "Function": tpl.sum(frFmt),
+        },
+        "Integer Sum": {
+          "Value": "Somme en entiers",
+          "Function": tpl.sum(frFmtInt),
+        },
+        "Average": {
+          "Value": "Moyenne",
+          "Function": tpl.average(frFmt),
+        },
+        "Minimum": {
+          "Value": "Minimum",
+          "Function": tpl.min(frFmt),
+        },
+        "Maximum": {
+          "Value": "Maximum",
+          "Function": tpl.max(frFmt),
+        },
+        "First": {
+          "Value": "Premier",
+          "Function": tpl.first(frFmt),
+        },
+        "Last": {
+          "Value": "Dernier",
+          "Function": tpl.last(frFmt),
+        },
+        "Sum over Sum": {
+          "Value": "Ratio de sommes",
+          "Function": tpl.sumOverSum(frFmt),
+        },
+        "80% Upper Bound": {
+          "Value": "Borne supérieure 80%",
+          "Function": tpl.sumOverSumBound80(true, frFmt),
+        },
+        "80% Lower Bound": {
+          "Value": "Borne inférieure 80%",
+          "Function": tpl.sumOverSumBound80(false, frFmt),
+        },
+        "Sum as Fraction of Total": {
+          "Value": "Somme en proportion du totale",
+          "Function": tpl.fractionOf(tpl.sum(), "total", frFmtPct),
+        },
+        "Sum as Fraction of Rows": {
+          "Value": "Somme en proportion de la ligne",
+          "Function": tpl.fractionOf(tpl.sum(), "row", frFmtPct),
+        },
+        "Sum as Fraction of Columns": {
+          "Value": "Somme en proportion de la colonne",
+          "Function": tpl.fractionOf(tpl.sum(), "col", frFmtPct),
+        },
+        "Count as Fraction of Total": {
+          "Value": "Nombre en proportion du totale",
+          "Function": tpl.fractionOf(tpl.count(), "total", frFmtPct),
+        },
+        "Count as Fraction of Rows": {
+          "Value": "Nombre en proportion de la ligne",
+          "Function": tpl.fractionOf(tpl.count(), "row", frFmtPct),
+        },
+        "Count as Fraction of Columns": {
+          "Value": "Nombre en proportion de la colonne",
+          "Function": tpl.fractionOf(tpl.count(), "col", frFmtPct),
+        }
       },
       renderers: {
         "Table": $.pivotUtilities.renderers["Table"],

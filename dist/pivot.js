@@ -398,10 +398,22 @@
     };
     aggregators = (function(tpl) {
       return {
-        "Count": tpl.count(usFmtInt),
-        "Count Unique Values": tpl.countUnique(usFmtInt),
-        "List Unique Values": tpl.listUnique(", "),
-        "Sum": tpl.sum(usFmt),
+        "Count" : {
+          "Value": "Count",
+          "Function": tpl.count(usFmtInt),
+        },
+        "Count Unique Values": {
+          "Value": "Nombre de valeurs uniques",
+          "Function": tpl.countUnique(usFmtInt),
+        },
+        "List Unique Values": {
+          "Value": "Liste de valeurs uniques",
+          "Function": tpl.listUnique(", "),
+        },
+        "Sum": {
+          "Value": "Somme",
+          "Function": tpl.sum(usFmt),
+        },
         "Integer Sum": tpl.sum(usFmtInt),
         "Average": tpl.average(usFmt),
         "Median": tpl.median(usFmt),
@@ -1478,7 +1490,11 @@
         ref1 = opts.aggregators;
         for (x in ref1) {
           if (!hasProp.call(ref1, x)) continue;
-          aggregator.append($("<option>").val(x).html(x));
+          if (typeof ref1[x] === "object") {
+            aggregator.append($("<option>").val(x).html(ref1[x].Value));
+          } else {
+            aggregator.append($("<option>").val(x).html(x));
+          }
         }
         ordering = {
           key_a_to_z: {
@@ -1555,7 +1571,7 @@
               rows: [],
               dataClass: opts.dataClass
             };
-            numInputsToProcess = (ref4 = opts.aggregators[aggregator.val()]([])().numInputs) != null ? ref4 : 0;
+            numInputsToProcess = (ref4 = ref1[aggregator.val()].Function([])().numInputs) != null ? ref4 : 0;
             vals = [];
             _this.find(".pvtRows li span.pvtAttr").each(function() {
               return subopts.rows.push($(this).data("attrName"));
@@ -1597,7 +1613,7 @@
             }
             subopts.aggregatorName = aggregator.val();
             subopts.vals = vals;
-            subopts.aggregator = opts.aggregators[aggregator.val()](vals);
+            subopts.aggregator = ref1[aggregator.val()].Function(vals);
             subopts.renderer = opts.renderers[renderer.val()];
             subopts.rowOrder = rowOrderArrow.data("order");
             subopts.colOrder = colOrderArrow.data("order");
